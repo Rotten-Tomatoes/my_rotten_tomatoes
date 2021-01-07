@@ -13,9 +13,9 @@ function LoginPage() {
         <Col>
           <h3>Login</h3>
           <Login />
-        </Col >
-      </Row >
-    </Container >
+        </Col>
+      </Row>
+    </Container>
   </>;
 };
 

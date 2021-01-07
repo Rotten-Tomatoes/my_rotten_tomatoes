@@ -3,7 +3,6 @@ import { Container, Form, Button } from "react-bootstrap";
 import Router from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
-import UserContext from "../lib/userContext";
 
 
 class Login extends Component {
@@ -41,7 +40,6 @@ class Login extends Component {
       Router.push("/");
     }
   };
-
 
   render() {
     return (
