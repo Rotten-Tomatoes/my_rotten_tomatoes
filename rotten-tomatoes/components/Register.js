@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import axios from "axios";
-
+import Router from "next/router";
 
 export default class Register extends React.Component {
   state = {
@@ -25,7 +25,8 @@ export default class Register extends React.Component {
     this.setState({ fullName: text.target.value });
   };
 
-  login = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     const user = {
       fullName: this.state.fullName,
       email: this.state.email,
@@ -40,18 +41,19 @@ export default class Register extends React.Component {
           let userresponse = response;
           console.log(userresponse.data);
           if (userresponse) {
-            sessionStorage.setItem("data", JSON.stringify(userresponse));
+            localStorage.setItem("data", JSON.stringify(userresponse));
             this.setState({ redirectToReferrer: true });
           }
         }, this)
         .catch((error) => alert(error));
-    } 
+    }
+    Router.push("/");
   };
 
   render() {
     return (
       <Container>
-        <form className="container">
+        <form className="container" onSubmit={this.handleSubmit}>
           <h3>REGISTER</h3>
           <div className="form-group">
             <label>Name</label>
@@ -95,16 +97,9 @@ export default class Register extends React.Component {
               />
             </div>
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary btn-block"
-            onClick={() => this.login()}
-          >
+          <button type="submit" className="btn btn-primary btn-block">
             Submit
           </button>
-          {/* <p className="forgot-password text-right">
-                Forgot <a to="#">password?</a>
-              </p> */}{" "}
         </form>
       </Container>
     );
